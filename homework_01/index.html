@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -60,7 +94,52 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-
+<p>This is Homework Assignment 1 for DS 362. You can view the course code for this assignment on GitHub: <a href="https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_01/index.qmd">view the source code</a>.</p>
+<section id="problems" class="level2">
+<h2 class="anchored" data-anchor-id="problems">Problems</h2>
+<section id="problem-1" class="level3">
+<h3 class="anchored" data-anchor-id="problem-1">Problem 1</h3>
+<ol type="a">
+<li><p>Create a RStudio project on your computer and name it <code>homework_01_lastname</code> where you should replace “lastname” with your last name. For example, I would create a project named <code>homework_01_graham</code>.</p></li>
+<li><p>Add a subfolder to your project title <code>data</code>.</p></li>
+<li><p>While in your project, create a Quarto document with title “Homework 1” and add your name as the author. Save this file as <code>lastname_homework_01</code> replacing the “lastname” part with your last name.</p></li>
+<li><p>Add the following R code chunk to your Quarto document:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load useful libraries</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytuesdayR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="problem-2" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2">Problem 2</h3>
+<p>Skim through the information in the following repositories:</p>
+<ul>
+<li><p>Pet Cats UK, <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-01-31/readme.md">view the repository</a></p></li>
+<li><p>Childcare Costs, <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-09/readme.md">view the repository</a></p></li>
+<li><p>Premier League Match Data 2021-2022, <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-04-04/readme.md">view the repository</a></p></li>
+</ul>
+<p>Choose the one of the three that you are most interested in.</p>
+</section>
+<section id="problem-3" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3">Problem 3</h3>
+<p>For your chosen data repository, write a paragraph in your Quarto document describing the data that is contained in this repository. Make sure that your paragraph addresses the following points:</p>
+<ol type="a">
+<li><p>The source of the data.</p></li>
+<li><p>The format the data is saved as. That is, is it saved as a csv file, a dat file, etc.?</p></li>
+<li><p>A general description of what information is recorded in the data.</p></li>
+</ol>
+</section>
+<section id="problem-4" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4">Problem 4</h3>
+<p>For your chosen data repository, follow the instructions given in the repository for loading the data into R. Once the data is loaded into R, carry out the following steps adding appropriate code chunks to your Quarto document:</p>
+<ol type="a">
+<li><p>Apply the <code>glimpse</code> command to the data frames with the data you loaded into R. Use the output from the <code>glimpse</code> command to determine the number of rows and columns in the data set(s) from the repository you chose.</p></li>
+<li><p>Create some exploratory plots for the data in the data frames that you loaded into R.</p></li>
+<li><p>What types of research or questions do you think you might be able to use your data to answer?</p></li>
+</ol>
+</section>
+</section>
 
 </main>
 <!-- /main column -->

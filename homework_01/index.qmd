@@ -5,3 +5,59 @@ format:
     theme: pulse  
 ---
 
+This is Homework Assignment 1 for DS 362. You can view the course code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_01/index.qmd).
+
+## Problems
+
+### Problem 1
+
+a. Create a RStudio project on your computer and name it `homework_01_lastname` where you should replace "lastname" with your last name. For example, I would create a project named `homework_01_graham`. 
+
+b. Add a subfolder to your project title `data`. 
+
+c. While in your project, create a Quarto document with title "Homework 1" and add your name as the author. Save this file as `lastname_homework_01` replacing the "lastname" part with your last name.
+
+d. Add the following R code chunk to your Quarto document:
+
+```{r}
+#| message: false
+#| warning: false
+#| code-fold: false
+#| echo: true
+
+# load useful libraries
+library(tidyverse)
+library(tidytuesdayR)
+```
+
+### Problem 2
+
+Skim through the information in the following repositories:
+
+- Pet Cats UK, [view the repository](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-01-31/readme.md)
+
+- Childcare Costs, [view the repository](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-09/readme.md)
+
+- Premier League Match Data 2021-2022, [view the repository](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-04-04/readme.md)
+
+Choose the one of the three that you are most interested in.  
+
+### Problem 3
+
+For your chosen data repository, write a paragraph in your Quarto document describing the data that is contained in this repository. Make sure that your paragraph addresses the following points:
+
+a. The source of the data. 
+
+b. The format the data is saved as. That is, is it saved as a csv file, a dat file, etc.?
+
+c. A general description of what information is recorded in the data.
+
+### Problem 4
+
+For your chosen data repository, follow the instructions given in the repository for loading the data into R. Once the data is loaded into R, carry out the following steps adding appropriate code chunks to your Quarto document:
+
+a. Apply the `glimpse` command to the data frames with the data you loaded into R. Use the output from the `glimpse` command to determine the number of rows and columns in the data set(s) from the repository you chose. 
+
+b. Create some exploratory plots for the data in the data frames that you loaded into R. 
+
+c. What types of research or questions do you think you might be able to use your data to answer?
