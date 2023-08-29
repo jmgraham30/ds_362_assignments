@@ -1,6 +1,6 @@
 ## Assignments for DS 362 Data-Driven Knowledge Discovery
 
-
+This is a repository for assignments corresponding to the course DS 362 *Data-Driven Knowledge Discovery*.
 
 ## License
 
