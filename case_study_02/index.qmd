@@ -1,0 +1,6 @@
+---
+title: "DS 362 Modeling Case Study 2"
+format: 
+  html:
+    theme: pulse
+---
