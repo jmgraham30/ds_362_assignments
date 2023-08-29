@@ -1,5 +1,5 @@
 ---
-title: "Homework 1"
+title: "DS 362 Homework 1"
 format: 
   html:
     theme: pulse  

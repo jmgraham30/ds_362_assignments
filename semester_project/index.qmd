@@ -1,5 +1,5 @@
 ---
-title: "Semester Project"
+title: "DS 362 Semester Project"
 format: 
   html:
     theme: pulse
