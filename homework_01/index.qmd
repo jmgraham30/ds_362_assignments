@@ -6,13 +6,21 @@ format:
     toc: true
 ---
 
-This is Homework Assignment 1 for DS 362. You can view the course code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_01/index.qmd).
+This is Homework Assignment 1 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_01/index.qmd).
 
 For your amusement: What did one tomato say to the other? "I know I'm late but I'll ketchup!" 
 
 ## Problems
 
 ### Problem 1
+
+a. Provide definitions for the following terms: data mining, machine learning
+
+b. What are the components of data mining that we discussed in class?
+
+
+
+### Problem 2
 
 a. Create a RStudio project on your computer and name it `homework_01_lastname` where you should replace "lastname" with your last name. For example, I would create a project named `homework_01_graham`. 
 
@@ -33,7 +41,7 @@ library(tidyverse)
 library(tidytuesdayR)
 ```
 
-### Problem 2
+### Problem 3
 
 Skim through the information in the following repositories:
 
@@ -45,7 +53,7 @@ Skim through the information in the following repositories:
 
 Choose the one of the three that you are most interested in.  
 
-### Problem 3
+### Problem 4
 
 For your chosen data repository, write a paragraph in your Quarto document describing the data that is contained in this repository. Make sure that your paragraph addresses the following points:
 
@@ -55,7 +63,7 @@ b. The format the data is saved as. That is, is it saved as a csv file, a dat fi
 
 c. A general description of what information is recorded in the data.
 
-### Problem 4
+### Problem 5
 
 For your chosen data repository, follow the instructions given in the repository for loading the data into R. Once the data is loaded into R, carry out the following steps adding appropriate code chunks to your Quarto document:
 
@@ -64,3 +72,13 @@ a. Apply the `glimpse` command to the data frames with the data you loaded into 
 b. Create some exploratory plots for the data in the data frames that you loaded into R. 
 
 c. What types of research or questions do you think you might be able to use your data to answer?
+
+### Problem 6
+
+This problem refers to Julia Silge's January 28, 2022 blog post, [view the post](https://juliasilge.com/blog/board-games/) which you will need to read through in order to answer the following questions.
+
+a. What is roughly the mean `average` variable in the data set that Silge is working with? 
+
+b. Describe the relationship between the variables `minage` and `average` from the data set that Silge is working with. 
+
+c. Without paying too much attention to detail, what is the goal of Silge's use of a machine learning model as applied to the data set she is working with in the blog post? Specifically, would you describe this as a supervised or unsupervised machine learning problem? Explain your answer. 

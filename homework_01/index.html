@@ -85,6 +85,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#problem-2" id="toc-problem-2" class="nav-link" data-scroll-target="#problem-2">Problem 2</a></li>
   <li><a href="#problem-3" id="toc-problem-3" class="nav-link" data-scroll-target="#problem-3">Problem 3</a></li>
   <li><a href="#problem-4" id="toc-problem-4" class="nav-link" data-scroll-target="#problem-4">Problem 4</a></li>
+  <li><a href="#problem-5" id="toc-problem-5" class="nav-link" data-scroll-target="#problem-5">Problem 5</a></li>
+  <li><a href="#problem-6" id="toc-problem-6" class="nav-link" data-scroll-target="#problem-6">Problem 6</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -108,12 +110,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>This is Homework Assignment 1 for DS 362. You can view the course code for this assignment on GitHub: <a href="https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_01/index.qmd">view the source code</a>.</p>
+<p>This is Homework Assignment 1 for DS 362. You can view the source code for this assignment on GitHub: <a href="https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_01/index.qmd">view the source code</a>.</p>
 <p>For your amusement: What did one tomato say to the other? “I know I’m late but I’ll ketchup!”</p>
 <section id="problems" class="level2">
 <h2 class="anchored" data-anchor-id="problems">Problems</h2>
 <section id="problem-1" class="level3">
 <h3 class="anchored" data-anchor-id="problem-1">Problem 1</h3>
+<ol type="a">
+<li><p>Provide definitions for the following terms: data mining, machine learning</p></li>
+<li><p>What are the components of data mining that we discussed in class?</p></li>
+</ol>
+</section>
+<section id="problem-2" class="level3">
+<h3 class="anchored" data-anchor-id="problem-2">Problem 2</h3>
 <ol type="a">
 <li><p>Create a RStudio project on your computer and name it <code>homework_01_lastname</code> where you should replace “lastname” with your last name. For example, I would create a project named <code>homework_01_graham</code>.</p></li>
 <li><p>Add a subfolder to your project title <code>data</code>.</p></li>
@@ -126,8 +135,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidytuesdayR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="problem-2" class="level3">
-<h3 class="anchored" data-anchor-id="problem-2">Problem 2</h3>
+<section id="problem-3" class="level3">
+<h3 class="anchored" data-anchor-id="problem-3">Problem 3</h3>
 <p>Skim through the information in the following repositories:</p>
 <ul>
 <li><p>Pet Cats UK, <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-01-31/readme.md">view the repository</a></p></li>
@@ -136,8 +145,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Choose the one of the three that you are most interested in.</p>
 </section>
-<section id="problem-3" class="level3">
-<h3 class="anchored" data-anchor-id="problem-3">Problem 3</h3>
+<section id="problem-4" class="level3">
+<h3 class="anchored" data-anchor-id="problem-4">Problem 4</h3>
 <p>For your chosen data repository, write a paragraph in your Quarto document describing the data that is contained in this repository. Make sure that your paragraph addresses the following points:</p>
 <ol type="a">
 <li><p>The source of the data.</p></li>
@@ -145,13 +154,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>A general description of what information is recorded in the data.</p></li>
 </ol>
 </section>
-<section id="problem-4" class="level3">
-<h3 class="anchored" data-anchor-id="problem-4">Problem 4</h3>
+<section id="problem-5" class="level3">
+<h3 class="anchored" data-anchor-id="problem-5">Problem 5</h3>
 <p>For your chosen data repository, follow the instructions given in the repository for loading the data into R. Once the data is loaded into R, carry out the following steps adding appropriate code chunks to your Quarto document:</p>
 <ol type="a">
 <li><p>Apply the <code>glimpse</code> command to the data frames with the data you loaded into R. Use the output from the <code>glimpse</code> command to determine the number of rows and columns in the data set(s) from the repository you chose.</p></li>
 <li><p>Create some exploratory plots for the data in the data frames that you loaded into R.</p></li>
 <li><p>What types of research or questions do you think you might be able to use your data to answer?</p></li>
+</ol>
+</section>
+<section id="problem-6" class="level3">
+<h3 class="anchored" data-anchor-id="problem-6">Problem 6</h3>
+<p>This problem refers to Julia Silge’s January 28, 2022 blog post, <a href="https://juliasilge.com/blog/board-games/">view the post</a> which you will need to read through in order to answer the following questions.</p>
+<ol type="a">
+<li><p>What is roughly the mean <code>average</code> variable in the data set that Silge is working with?</p></li>
+<li><p>Describe the relationship between the variables <code>minage</code> and <code>average</code> from the data set that Silge is working with.</p></li>
+<li><p>Without paying too much attention to detail, what is the goal of Silge’s use of a machine learning model as applied to the data set she is working with in the blog post? Specifically, would you describe this as a supervised or unsupervised machine learning problem? Explain your answer.</p></li>
 </ol>
 </section>
 </section>
