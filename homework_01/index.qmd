@@ -3,9 +3,12 @@ title: "DS 362 Homework 1"
 format: 
   html:
     theme: pulse  
+    toc: true
 ---
 
 This is Homework Assignment 1 for DS 362. You can view the course code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_01/index.qmd).
+
+For your amusement: What did one tomato say to the other? "I know I'm late but I'll ketchup!" 
 
 ## Problems
 
