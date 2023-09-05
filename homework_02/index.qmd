@@ -6,8 +6,10 @@ format:
     toc: true
 ---
 
-This is Homework Assignment 2 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_01/index.qmd).
+This is Homework Assignment 2 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_02/index.qmd).
 
-For your amusement: What did one tomato say to the other? "I know I'm late but I'll ketchup!" 
+For your amusement: Knock knock. "Who's there?" Figs. "Figs who?" "Figs the doorbell. I've been knocking forever!"
 
 ## Problems
+
+### Problem 1
