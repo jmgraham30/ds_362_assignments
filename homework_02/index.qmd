@@ -30,3 +30,8 @@ Please complete exercise 4 from section 2.4 on page 53 from the ISLR course text
 
 
 Please complete exercise 10 from section 2.4 on page 57 from the ISLR course text.
+
+
+### Problem 4
+
+Complete exercise 1 on pages 39 - 40 of the textbook Statistical Learning with Math and R by Joe Suzuki, available online through the Weinberg Library, [view the text](https://link-springer-com.ezp.scranton.edu/book/10.1007/978-981-15-7568-6). There is also a version of the text using Python instead of R, [view the Python version](https://link-springer-com.ezp.scranton.edu/book/10.1007/978-981-15-7877-9)
