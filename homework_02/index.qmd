@@ -34,6 +34,42 @@ Please complete exercise 10 from section 2.4 on page 57 from the ISLR course tex
 
 ### Problem 4
 
-Complete exercise 1 on pages 39 - 40 of the textbook Statistical Learning with Math and R by Joe Suzuki, available online through the Weinberg Library, [view the text](https://link-springer-com.ezp.scranton.edu/book/10.1007/978-981-15-7568-6). There is also a version of the text using Python instead of R, [view the Python version](https://link-springer-com.ezp.scranton.edu/book/10.1007/978-981-15-7877-9)
+Complete exercise 1 on pages 39 - 40 of the textbook Statistical Learning with Math and R by Joe Suzuki, available online through the Weinberg Library, [view the text](https://link-springer-com.ezp.scranton.edu/book/10.1007/978-981-15-7568-6).
 
 This problem is walks you through the steps in the derivation of the linear least squares problems for simple linear regression. 
+
+
+### Problem 5
+
+Suppose that $\| \cdot \|$ is a vector norm and let ${\bf u}$ and ${\bf v}$ be vectors. Show that 
+
+$$
+| \|u\| - \|v\| | \leq \| u - v \|
+$$
+
+**Hint:** This can be done by noting that $\|{\bf u}\| = \|{\bf u} - {\bf v} + {\bf v} \|$ and then manipulating the triangle inequality. 
+
+### Problem 6
+
+Use the `qr` command in R to compute the $QR$ factorization of each of the following matrices. Write down the sizes of the $Q$ and $R$ matrices in each case and state the rank of $A$.
+
+a. $A = \left[\begin{array}{ccc} -1 & 4 & -3 \\ -1 & 0 & 1 \\ -6 & 2 & 3  \end{array}\right]$. Here is the R code to create this matrix:
+
+```{r}
+(A <- matrix(c(-1,4,-3,-1,0,1,-6,2,3),3,3,byrow = TRUE))
+```
+
+b. $B = \left[\begin{array}{ccc} -1 & 0 & 1 \\ -6 & 2 & 3  \end{array}\right]$. Here is the R code to create this matrix:
+
+```{r}
+(B <- matrix(c(-1,0,1,-6,2,3),2,3,byrow = TRUE))
+```
+
+
+c. $C = \left[\begin{array}{cc} -1  & -3 \\ -1 & 0 \\  2 & 3  \end{array}\right]$. Here is the R code to create this matrix:
+
+```{r}
+(C <- matrix(c(-1,-3,-1,0,2,3),3,2,byrow = TRUE))
+```
+
+
