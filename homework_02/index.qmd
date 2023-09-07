@@ -51,7 +51,7 @@ $$
 
 ### Problem 6
 
-Use the `qr` command in R to compute the $QR$ factorization of each of the following matrices. Write down the sizes of the $Q$ and $R$ matrices in each case and state the rank of $A$.
+Use the `qr` command in R to compute the $QR$ factorization of each of the following matrices. Write down the sizes of the $Q$ and $R$ matrices in each case.
 
 a. $A = \left[\begin{array}{ccc} -1 & 4 & -3 \\ -1 & 0 & 1 \\ -6 & 2 & 3  \end{array}\right]$. Here is the R code to create this matrix:
 
