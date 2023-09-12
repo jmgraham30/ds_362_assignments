@@ -3,5 +3,91 @@ title: "DS 362 Semester Project"
 format: 
   html:
     theme: pulse
+bibliography: semester_project.bib
 ---
+
+## Overview
+
+The semester project will incorporate all the components of a data analysis covered in the course throughout the semester applied to a particular data set. Various components of the project will be due at different times but you will have the opportunity to revise some components prior to the submission of the final product. 
+
+A complete project, counting for 30% of the overall course grade will consist of the following:
+
+- An initial exploratory data analysis for your data set.  
+
+- An appropriate analysis of your data set with the goal to address a specific research question.  
+
+- A project report developed using Quarto.
+
+- Slides for a presentation summarizing your project. You will not actually present the slides. 
+
+- A GitHub repository containing all code (appropriately documented) written and used in your project.
+
+Your project report and presentation should be written as if it is addressed to a stake holder with some subject matter knowledge in the domain of application but not necessarily with a quantitative or programming background. Further details on the semester project such as the parameters of the assignment and a grade rubric will be posted on the course learning management system. 
+
+
+
+## Component 1
+
+The first component of your semester project is due by the end of the fifth week of classes. The first component should consist of the following:
+
+- A paragraph that addresses the following questions:
+
+1. What is the topic that you want to focus on for your semester project? 
+
+2. Why is the topic of focus for your project appropriate for data analysis?
+
+3. What is the source for the data you will use for your project? Make sure to include a reference or link to your data source.
+
+- A draft of your datasheet. See below for a description of what you should include as part of your data sheet. 
+
+- The results of an exploratory data analysis (EDA) for your chosen data set. This should include all the code you used to conduct an EDA together with a document that describes what you did and what you learned from the EDA. 
+
+- A description of the type of modeling you anticipate doing with your data. 
+
+### Data Sheet Parameters
+
+The paper [Datasheets for Datasets](https://dl.acm.org/doi/pdf/10.1145/3458723) lays out a framework for documenting data for data science projects [@gebru2021datasheets]. [View the paper](https://dl.acm.org/doi/pdf/10.1145/3458723). The following video provides an overview of Datasheets for Datasets:
+
+```{r}
+#| echo: false
+library(magrittr)
+vembedr::embed_youtube(id="R7s7_T4yXak",height=450) %>%
+  vembedr::use_align("center")
+```
+
+
+We will follow this framework to create a data sheet for our data package assignment. A datasheet should contain the following sections that address the specified questions:
+
+- Section 1: Data Sources
+
+Who created the data and where did you obtain it from? Why was the data collected? Is the data from a public or private source? From what population(s) has the data been sampled? 
+
+Be sure that your datasheet includes links or references to the data source(s). 
+
+- Section 2: Format of Data
+
+What is the format of the original data? What type of files are used for saving or storing the data? 
+
+- Section 3: Data Structure
+
+What is the structure of the raw data? For example, is it tabular data? If so, how many rows and columns does it have? What information is in each column and row? Is the data self-contained or does it link to other sources?
+
+- Section 4: Data Issues
+
+Does the data contain any errors or missing values?
+
+- Section 5: Data Cleaning
+
+Has the data been cleaned in any way? If so, describe the cleaning process and what has been done? For example, where any missing values removed? Make sure to include files for the cleaned/processed data along with any code used to do so. 
+
+
+## Component 2
+
+Component 2 of your semester project is due by the end of week 11 and should consist of an appropriate analysis of your data set with the goal to address a specific research question.
+
+
+## Component 3
+
+The final draft of all components of your project, due at the time of our scheduled final exam period. 
+
 

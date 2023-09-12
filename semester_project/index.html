@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -33,6 +52,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="index_files/libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet">
 
 
 </head>
@@ -60,9 +80,86 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The semester project will incorporate all the components of a data analysis covered in the course throughout the semester applied to a particular data set. Various components of the project will be due at different times but you will have the opportunity to revise some components prior to the submission of the final product.</p>
+<p>A complete project, counting for 30% of the overall course grade will consist of the following:</p>
+<ul>
+<li><p>An initial exploratory data analysis for your data set.</p></li>
+<li><p>An appropriate analysis of your data set with the goal to address a specific research question.</p></li>
+<li><p>A project report developed using Quarto.</p></li>
+<li><p>Slides for a presentation summarizing your project. You will not actually present the slides.</p></li>
+<li><p>A GitHub repository containing all code (appropriately documented) written and used in your project.</p></li>
+</ul>
+<p>Your project report and presentation should be written as if it is addressed to a stake holder with some subject matter knowledge in the domain of application but not necessarily with a quantitative or programming background. Further details on the semester project such as the parameters of the assignment and a grade rubric will be posted on the course learning management system.</p>
+</section>
+<section id="component-1" class="level2">
+<h2 class="anchored" data-anchor-id="component-1">Component 1</h2>
+<p>The first component of your semester project is due by the end of the fifth week of classes. The first component should consist of the following:</p>
+<ul>
+<li>A paragraph that addresses the following questions:</li>
+</ul>
+<ol type="1">
+<li><p>What is the topic that you want to focus on for your semester project?</p></li>
+<li><p>Why is the topic of focus for your project appropriate for data analysis?</p></li>
+<li><p>What is the source for the data you will use for your project? Make sure to include a reference or link to your data source.</p></li>
+</ol>
+<ul>
+<li><p>A draft of your datasheet. See below for a description of what you should include as part of your data sheet.</p></li>
+<li><p>The results of an exploratory data analysis (EDA) for your chosen data set. This should include all the code you used to conduct an EDA together with a document that describes what you did and what you learned from the EDA.</p></li>
+<li><p>A description of the type of modeling you anticipate doing with your data.</p></li>
+</ul>
+<section id="data-sheet-parameters" class="level3">
+<h3 class="anchored" data-anchor-id="data-sheet-parameters">Data Sheet Parameters</h3>
+<p>The paper <a href="https://dl.acm.org/doi/pdf/10.1145/3458723">Datasheets for Datasets</a> lays out a framework for documenting data for data science projects <span class="citation" data-cites="gebru2021datasheets">(<a href="#ref-gebru2021datasheets" role="doc-biblioref">Gebru et al. 2021</a>)</span>. <a href="https://dl.acm.org/doi/pdf/10.1145/3458723">View the paper</a>. The following video provides an overview of Datasheets for Datasets:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div class="vembedr" align="center">
+<div>
+<iframe src="https://www.youtube.com/embed/R7s7_T4yXak" width="800" height="450" frameborder="0" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
+</div>
+</div>
+<p>We will follow this framework to create a data sheet for our data package assignment. A datasheet should contain the following sections that address the specified questions:</p>
+<ul>
+<li>Section 1: Data Sources</li>
+</ul>
+<p>Who created the data and where did you obtain it from? Why was the data collected? Is the data from a public or private source? From what population(s) has the data been sampled?</p>
+<p>Be sure that your datasheet includes links or references to the data source(s).</p>
+<ul>
+<li>Section 2: Format of Data</li>
+</ul>
+<p>What is the format of the original data? What type of files are used for saving or storing the data?</p>
+<ul>
+<li>Section 3: Data Structure</li>
+</ul>
+<p>What is the structure of the raw data? For example, is it tabular data? If so, how many rows and columns does it have? What information is in each column and row? Is the data self-contained or does it link to other sources?</p>
+<ul>
+<li>Section 4: Data Issues</li>
+</ul>
+<p>Does the data contain any errors or missing values?</p>
+<ul>
+<li>Section 5: Data Cleaning</li>
+</ul>
+<p>Has the data been cleaned in any way? If so, describe the cleaning process and what has been done? For example, where any missing values removed? Make sure to include files for the cleaned/processed data along with any code used to do so.</p>
+</section>
+</section>
+<section id="component-2" class="level2">
+<h2 class="anchored" data-anchor-id="component-2">Component 2</h2>
+<p>Component 2 of your semester project is due by the end of week 11 and should consist of an appropriate analysis of your data set with the goal to address a specific research question.</p>
+</section>
+<section id="component-3" class="level2">
+<h2 class="anchored" data-anchor-id="component-3">Component 3</h2>
+<p>The final draft of all components of your project, due at the time of our scheduled final exam period.</p>
 
+</section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-gebru2021datasheets" class="csl-entry" role="listitem">
+Gebru, Timnit, Jamie Morgenstern, Briana Vecchione, Jennifer Wortman Vaughan, Hanna Wallach, Hal Daumé Iii, and Kate Crawford. 2021. <span>“Datasheets for Datasets.”</span> <em>Communications of the ACM</em> 64 (12): 86–92.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
