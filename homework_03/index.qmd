@@ -66,3 +66,15 @@ Complete exercise 9 on pages 123 - 124 from [An Introduction to Statistical Lear
 For part (a), you can accomplish this using the `ggpairs` function from the `GGAlly` package which you will need to install and load. 
 
 For now, you can ignore (ii) for part (c).
+
+### Problem 5
+
+Complete exercise 1 on page 189 from [An Introduction to Statistical Learning](https://www.statlearning.com/).
+
+### Problem 6
+
+Complete exercise 4 on pages 189 - 190 [An Introduction to Statistical Learning](https://www.statlearning.com/).
+
+### Problem 7
+
+Complete exercise 6 on page 191 [An Introduction to Statistical Learning](https://www.statlearning.com/).
