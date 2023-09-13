@@ -6,7 +6,7 @@ format:
     toc: true
 ---
 
-This is Homework Assignment 3 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_02/index.qmd).
+This is Homework Assignment 3 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_03/index.qmd).
 
 For your amusement: What's orange and sounds like a parrot? A carrot!
 
