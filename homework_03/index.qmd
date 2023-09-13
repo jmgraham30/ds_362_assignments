@@ -6,6 +6,18 @@ format:
     toc: true
 ---
 
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(tidymodels)
+
+theme_set(theme_minimal(base_size = 12))
+
+```
+
 This is Homework Assignment 3 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_03/index.qmd).
 
 For your amusement: What's orange and sounds like a parrot? A carrot!
@@ -17,3 +29,40 @@ Many of the problems in this homework assignment are from the course text [An In
 Please complete and turn in this assignment as a Quarto notebook. 
 
 ### Problem 1
+
+Complete exercise 3 on pages 121-122 from [An Introduction to Statistical Learning](https://www.statlearning.com/).
+
+### Problem 2
+
+Complete exercise 4 on page 122 from [An Introduction to Statistical Learning](https://www.statlearning.com/). Note that in that problem RSS is what we referred to as the squared error of residuals in lecture. 
+
+### Problem 3
+
+Complete exercise 8 on page 123 from [An Introduction to Statistical Learning](https://www.statlearning.com/). To do this exercise, you will need to install and load the `ISLR2` package in order to access the `Auto` data set. 
+
+For now, you may omit (iv) from part (a). 
+
+For part (b) rather than use `abline` to add the least squares regression line, use `geom_smooth` from the `ggplot2` package. Here is an example of how it works:
+
+```{r}
+#| echo: true
+#| code-fold: false
+#| message: false
+#| warning: false
+
+diamonds %>% 
+  filter(carat <= 1) %>% 
+  ggplot(aes(x=carat,y=sqrt(price))) + 
+  geom_point() + 
+  geom_smooth(method="lm",se=FALSE)
+```
+
+The important point is that `geom_smooth(method="lm",se=FALSE)` adds the least squares regression line which is specified by `method="lm"`, the `se=FALSE` argument removes the error band around the regression line which `geom_smooth` includes by default. 
+
+### Problem 4
+
+Complete exercise 9 on pages 123 - 124 from [An Introduction to Statistical Learning](https://www.statlearning.com/). To do this exercise, you will need to install and load the `ISLR2` package in order to access the `Auto` data set. 
+
+For part (a), you can accomplish this using the `ggpairs` function from the `GGAlly` package which you will need to install and load. 
+
+For now, you can ignore (ii) for part (c).
