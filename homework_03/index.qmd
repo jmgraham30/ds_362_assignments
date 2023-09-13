@@ -1,0 +1,19 @@
+---
+title: "DS 362 Homework 3"
+format: 
+  html:
+    theme: pulse  
+    toc: true
+---
+
+This is Homework Assignment 3 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_02/index.qmd).
+
+For your amusement: What's orange and sounds like a parrot? A carrot!
+
+## Problems
+
+Many of the problems in this homework assignment are from the course text [An Introduction to Statistical Learning](https://www.statlearning.com/) which we will abbreviate as ISLR. [Access the book online here](https://hastie.su.domains/ISLR2/ISLRv2_corrected_June_2023.pdf).
+
+Please complete and turn in this assignment as a Quarto notebook. 
+
+### Problem 1

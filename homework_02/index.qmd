@@ -14,7 +14,7 @@ For your amusement: Knock knock. "Who's there?" Figs. "Figs who?" "Figs the door
 
 Many of the problems in this homework assignment are from the course text [An Introduction to Statistical Learning](https://www.statlearning.com/) which we will abbreviate as ISLR. [Access the book online here](https://hastie.su.domains/ISLR2/ISLRv2_corrected_June_2023.pdf).
 
-Please complete and hand in this assignment as a Quarto notebook. 
+Please complete and turn in this assignment as a Quarto notebook. 
 
 ### Problem 1
 
