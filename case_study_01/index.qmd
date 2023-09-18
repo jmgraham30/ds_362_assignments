@@ -4,3 +4,13 @@ format:
   html:
     theme: pulse
 ---
+
+
+## A Regression Case Study
+
+
+[Predict giant pumpkin weights with workflowsets](https://juliasilge.com/blog/giant-pumpkins/)
+
+## A Classification Case Study
+
+[Get started with tidymodels and Palmer penguins](https://juliasilge.com/blog/palmer-penguins/)
