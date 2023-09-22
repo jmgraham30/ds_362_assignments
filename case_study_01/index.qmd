@@ -5,12 +5,42 @@ format:
     theme: pulse
 ---
 
+For your amusement: What did the paper say to the pencil? Write on! 
 
-## A Regression Case Study
+## Assignment Overview and Instructions 
+
+The goal of this modeling case study is for you to get hands-on experience in going through the steps of a machine learning problem from beginning to end with provided data. The case studies in this assignment will focus on regression and classification methods that have been covered in class so far or are similiar to those we have covered in class so far. 
+
+For this assignment, you should create and work in an RStudio project named `case_study_1_lastname` where you will replace the `lastname` part with your last name. Also, you should create two Quarto notebooks to work in, one titled `regression_problem.qmd` and the other titled `classification_problem.qmd`. Finally, you should maintain your project as a GitHub repository. 
+
+### Regression Case Study
 
 
-[Predict giant pumpkin weights with workflowsets](https://juliasilge.com/blog/giant-pumpkins/)
+For the regression problem case study, you will be following and modifying the blog post [Predict giant pumpkin weights with workflowsets](https://juliasilge.com/blog/giant-pumpkins/) by Julia Silge. [View the blog post here](https://juliasilge.com/blog/giant-pumpkins/). You should probably start by reading through that blog post or watching the corresponding YouTube video. [View the video here](https://youtu.be/qNxJKke2rsE?si=Jc7x43QY6if6v41r).
 
-## A Classification Case Study
+Make sure that your `regression_problem.qmd` Quarto document has your name in the author field. After the header in the Quarto document, create a R code chunk where you load all the necessary packages for the regression problem. Your Quarto document should include the following sections:
 
-[Get started with tidymodels and Palmer penguins](https://juliasilge.com/blog/palmer-penguins/)
+1. An introduction that introduces the data and problem that will be studied using machine learning. Make sure to include the data source.
+
+2. An exploratory data analysis section. In this section, you should include commands to load and clean the data. You should include a few exploratory plots making sure to provide commentary about what the plots show and how they inform the analysis you will conduct. You should make at least one plot that is not already in Silge's blog post.  
+
+3. A modeling section. In Silge's blog, she uses three different types of regression models: a random forest, a  multivavriate adaptive regression spline, and linear regression. Instead, you should use linear regression, nearest neighbors, and a generalized additive model. You do not need to use the workflow sets like Silge does. Instead, you can just set up a separate workflow for each type of model as we have done in class. 
+
+4. A conclusion or discussion section that explains the results of you models in the context of the data and problem you are applying the modeling to address.  
+
+
+
+### Classification Case Study
+
+For the classification problem case study, you will be following and modifying the bloog post [Get started with tidymodels and Palmer penguins](https://juliasilge.com/blog/palmer-penguins/) by Julia Silge. [View teh blog post here](https://juliasilge.com/blog/palmer-penguins/). You should probably start by reading through that blog post or watching the corresponding YouTube video. [View the video here](https://youtu.be/z57i2GVcdww?si=cZqWpn3OxtEpCja8).
+
+Make sure that your `classification_problem.qmd` Quarto document has your name in the author field. After the header in the Quarto document, create a R code chunk where you load all the necessary packages for the regression problem. Your Quarto document should include the following sections:
+
+1. An introduction that introduces the data and problem that will be studied using machine learning. Make sure to include the data source. 
+
+2. An exploratory data analysis section. In this section, you should include commands to load and clean the data. You should include a few exploratory plots making sure to provide commentary about what the plots show and how they inform the analysis you will conduct. You should make at least one plot that is not already in Silge's blog post.  
+
+3. A modeling section. In her post, Silge uses logistic regression and a random forest. For your case study, you should use logistic regression, nearest neighbors and Naive Bayes. You can learn how to run a Naive Bayes classification by reading the documentation. [View the documentation](https://parsnip.tidymodels.org/reference/naive_Bayes.html).
+
+
+4. A conclusion or discussion section that explains the results of you models in the context of the data and problem you are applying the modeling to address. 
