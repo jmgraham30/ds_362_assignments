@@ -13,6 +13,7 @@ format:
 
 library(tidyverse)
 library(tidymodels)
+library(discrim)
 
 theme_set(theme_minimal(base_size = 12))
 
@@ -34,3 +35,135 @@ Please complete and turn in this assignment as a Quarto notebook.
 
 ### Problem 1
 
+This problem as well as the next few are concerned with the derivation of another classification method known as *naive Bayes* classifiers. The first step is to recall Bayes' theorem which is stated as formula 4.15 on page 142 of ISLR. For convenience, we repeat formula 4.15 here:
+
+$$
+P(Y = k | {\bf x}) = \frac{\pi_{k} f_{k}({\bf x})}{ \sum_{l=1}^{K}\pi_{l} f_{l}({\bf x}) }
+$$
+
+Explain the meaning of the following notation from Bayes' theorem, rereading the parts of section 4.4 from ISLR on pages    if necessary:
+
+1. The prior probability values $\pi_{k}$, $k = 1, \ldots, K$;
+
+2. the density functions $f_{k}({\bf x})$, $k = 1, \ldots, K$; and 
+
+3. the posterior probability $P(Y = k | {\bf x})$. 
+
+
+### Problem 2
+
+For this problem, you may want to begin by reading section 4.4.4 from ISLR. 
+
+The goal of naive Bayes classification is to estimate the posterior probabilities $P(Y = k | {\bf x})$ for each class by estimating the priors $\pi_{k}$ for each class as well as the density functions $f_{k}({\bf x})$ for each class. The main assumption of naive Bayes is that *within the kth class, the p predictors are independent.* Explain why this allows us to then write
+
+$$
+f_{k}({\bf x}) = f_{k1}(x_{1}) f_{k2}(x_{2}) \cdots f_{kp}(x_{p})
+$$
+
+where ${\bf x} = (x_{1},x_{2},\ldots x_{p})$ is a value for the $p$ predictor variables.
+
+### Problem 3
+
+Show that under the main assumption for naive Bayes classification described in problem 2, Bayes' theorem becomes
+
+$$
+P(Y = k | {\bf x}) = \frac{\pi_{k} f_{k1}(x_{1}) f_{k2}(x_{2}) \cdots f_{kp}(x_{p})}{ \sum_{l=1}^{K}\pi_{l} f_{l1}(x_{1}) f_{l2}(x_{2}) \cdots f_{lp}(x_{p}) }
+$$
+
+
+### Problem 4
+
+This problem will apply and evaluate the performance of two classification models applied to the `penguins` data set in order to attempt to classify the island of penguins based on their physical measurements. 
+
+a. Make a scatter plot of two of the physical measurements adding color to distinguish the island of the birds. Based on the scatter plot, do you think this will be an easy or difficult classification problem? 
+
+b. The following code is a complete `tidymodels` workflow for multi-class classification using multi-nomial regression applied to the pengiuns data set to repdict the island that each penguin was observed on:
+
+```{r}
+# remove missing values from predictors
+penguins <- penguins %>%
+  filter(!is.na(bill_length_mm),
+         !is.na(bill_depth_mm),
+         !is.na(flipper_length_mm),
+         !is.na(body_mass_g))
+
+# create training/test split
+peng_split <- initial_split(penguins, strata = island)
+peng_train <- training(peng_split)
+peng_test <- testing(peng_split)
+
+# specify model class and implementation
+mr_cls_spec <- 
+  multinom_reg(penalty = 0.01) %>% 
+  set_engine("glmnet")
+
+# fit model
+mr_cls_fit <- mr_cls_spec %>% 
+  fit(island ~ bill_length_mm + bill_depth_mm + flipper_length_mm + body_mass_g, data = peng_train)
+
+# predict on test set and add observed values
+mr_class_preds <- bind_cols(
+  predict(mr_cls_fit, peng_test),
+  predict(mr_cls_fit, peng_test, type = "prob")
+) %>%
+  mutate(truth = peng_test$island)
+  
+# assess accuracy
+(mr_class_preds %>%
+    conf_mat(truth,.pred_class))
+
+(mr_class_preds %>%
+    accuracy(truth,.pred_class))
+
+# plot ROC
+mr_class_preds %>%
+    roc_curve(truth = truth,.pred_Biscoe:.pred_Torgersen) %>%
+  ggplot(aes(x=specificity,y=sensitivity,color=.level)) + 
+  geom_path(linewidth=1.2) + 
+  scale_x_reverse() + 
+  labs(x = "Specificity",y= "Sensitivity", color = "Island", title = "ROC curve for multi-nomial regression")
+
+# area under ROC curve
+(mr_class_preds %>%
+    roc_auc(truth = truth,.pred_Biscoe:.pred_Torgersen))
+```
+
+What is your overall assessment of the preformance of the multi-nomial regression model for the data? Was it more difficult to make accurate predictions for one of the islands compared with the others? 
+
+c. Modify the previous workflow to use naive Bayes instead of multi-nomial regression. The main thing you need to change is the lines where the model class and implementation are specified. Instead of `multinom_reg`, you will want to use `naive_Bayes`[^1]. You will also need to know what the choices for engine are which you can find by reading the documentation. [View the documentation](https://parsnip.tidymodels.org/reference/naive_Bayes.html).
+
+[^1]: Note that you will need to have the packages `discrim` and `klaR` installed to use the default engine for naive Bayes. You will also need to load `discrim` with the `library(discrim)` command.
+
+d. How do the results of using naive Bayes compare with those of multi-nomial regression? 
+
+
+### Problem 5
+
+Suppose that $X$ and $Y$ are random variables. Denote by $\sigma^{2}_{X} = \text{Var}[X]$, $\sigma^{2}_{Y} = \text{Var}[Y]$, and $\sigma_{XY} = \text{Cov}[X,Y]$.  Recall that for any two numbers $a$ and $b$, we have
+
+$$
+\text{Var}[aX + bY] = a^2 \sigma^{2}_{X} + b^2 \sigma^{2}_{Y} + 2ab \sigma_{XY}
+$$
+Using this notation and the previous identity, complete exercise 1. on page 219 of ISLR. 
+
+
+### Problem 6
+
+Suppose that we use some statistical learning method to make a prediction for the response $Y$ for a particular value of the predictor ${\bf x}$. Carefully describe how we might estimate the standard deviation of our prediction using resampling methods.
+
+
+### Problem 7
+
+Let's simulate data that corresponds to a linear relationship between a numerical response and a single numerical predictor:
+
+```{r}
+
+set.seed(7291)
+N <- 72
+x <- rnorm(N,15,2.8)
+y <- 3 * x + 12 + rnorm(N,sd=3)
+
+xy_df <- tibble(x=x,y=y)
+```
+
+Use bootstrap resampling to estimate the standard error for the slope estimate in a linear regression model for the simulated data. 
