@@ -166,4 +166,6 @@ y <- 3 * x + 12 + rnorm(N,sd=3)
 xy_df <- tibble(x=x,y=y)
 ```
 
-Use bootstrap resampling to estimate the standard error for the slope estimate in a linear regression model for the simulated data. 
+a. Use bootstrap resampling to estimate the standard error for the slope estimate in a linear regression model for the simulated data. 
+
+b. Explain the results of the application of the bootstrap technique in the context of estimating the slope.
