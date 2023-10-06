@@ -1,0 +1,102 @@
+---
+title: "DS 362 Homework 5"
+format: 
+  html:
+    theme: pulse  
+    toc: true
+---
+
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(tidymodels)
+library(discrim)
+
+theme_set(theme_minimal(base_size = 12))
+
+```
+
+This is Homework Assignment 5 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_05/index.qmd).
+
+For your amusement: What is an astronomer's favorite key on the keyboard? The space bar. 
+
+## Instructions 
+
+Many of the problems in this homework assignment are from the course text [An Introduction to Statistical Learning](https://www.statlearning.com/) which we will abbreviate as ISLR. [Access the book online here](https://hastie.su.domains/ISLR2/ISLRv2_corrected_June_2023.pdf).
+
+Please complete and turn in this assignment as a Quarto notebook. 
+
+
+## Problems
+
+
+### Problem 1
+
+Complete exercise 1 from page 361 of ISLR. 
+
+### Problem 2
+
+Complete exercise 3 from pages 361 - 362 of ISLR. 
+
+### Problem 3
+
+Consider the data on wind turbines used in the [Tune and interpret decision trees for wind turbines](https://juliasilge.com/blog/wind-turbine/) blog post by Julia Silge. [View the post](https://juliasilge.com/blog/wind-turbine/).
+
+In this exercise, you will use the `tidymodels` framework to compare multiple linear regression models for the turbines data. 
+
+a. Follow the blog post to read in the data and create the `turbines_df` data frame. 
+
+b. As in done on the blog post, use the appropriate `tidymodels` functions to create a `wind_train` and `wind_test` training and testing set, and create a `wind_folds` data frame with the folds necessary for 10-fold cross-validation. 
+
+c. Now, use a workflow set to fit three different linear regression models. The following code will be helpful for this: 
+
+```
+basic_rec <- 
+  recipe(turbine_capacity ~ ., 
+         data = wind_train)
+
+rotor_hub_rec <- basic_rec %>%
+  step_rm(commissioning_date)
+
+commissioning_rec <- basic_rec %>%
+  step_rm(rotor_diameter_m,hub_height_m)
+
+
+wind_models <- workflow_set(preproc = list(basic = basic_rec,rotor_hub=rotor_hub_rec,commissioning=commissioning_rec),
+                            models = list(lm = linear_reg()), cross = FALSE)
+
+
+wind_res <-
+  wind_models %>% 
+  workflow_map(
+    resamples = wind_folds,
+    metrics = metric_set(rmse, rsq)
+  )
+  
+wind_res  
+
+```
+
+In the previous code, three are three regression models `basic_rec` (includes all predictors), `rotor_hub_rec` (removes the commissioning data predictor), and `commissioning_rec` (removes the rotor and hub measurement variables).  
+
+d. Use the `autoplot` function from plot the results stored in `wind_res`. In terms of the metric collected, are any of the models better or worse than the model with all predictors included? **Hint:** The `rank_results` function might be helpful here. 
+
+e. Finally, choose the one of the three models that you prefer, fit it to the full training set and then predict on the test set and compute the test rmse and rsq values. 
+
+### Problem 4
+
+Tune and fit a random forest to the turbines data from the [Tune and interpret decision trees for wind turbines](https://juliasilge.com/blog/wind-turbine/) blog post by Julia Silge. [View the post](https://juliasilge.com/blog/wind-turbine/).
+
+### Problem 5
+
+Tune and fit a boosted tree model to the turbines data from the [Tune and interpret decision trees for wind turbines](https://juliasilge.com/blog/wind-turbine/) blog post by Julia Silge. [View the post](https://juliasilge.com/blog/wind-turbine/).
+
+### Problem 6
+
+Compare the performance in terms of rmse and rsq for the linear regression model you chose in Problem 3, the random forest model from Problem 4, and the boosted tree model from Problem 5. **Note:** If you want to, you can follow the pattern from Problem 3 and use a workflow set to compare the different kinds of models.  
+
+
+
