@@ -1,0 +1,69 @@
+---
+title: "DS 362 Homework 6"
+format: 
+  html:
+    theme: pulse  
+    toc: true
+---
+  
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(tidymodels)
+
+theme_set(theme_minimal(base_size = 12))
+
+```
+
+This is Homework Assignment 6 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_06/index.qmd).
+
+For your amusement: When is a bump like a hat? When it's felt. 
+
+## Instructions 
+
+Many of the problems in this homework assignment are from the course text [An Introduction to Statistical Learning](https://www.statlearning.com/) which we will abbreviate as ISLR. [Access the book online here](https://hastie.su.domains/ISLR2/ISLRv2_corrected_June_2023.pdf).
+
+Please complete and turn in this assignment as a Quarto notebook. 
+
+## Problems
+
+### Problem 1
+
+Consider the sigmoid activation function
+
+$$
+\phi(z) = \frac{1}{1 + e^{-z}}
+$$
+Show that
+
+$$
+\phi(z) = 1 - \phi(-z)
+$$
+and
+
+$$
+\phi'(z) = \phi(z)(1 - \phi(z))
+$$
+
+
+### Problem 2
+
+Complete exercise 1 on page 458 of ISLR.
+
+### Problem 3
+
+Complete exercise 4 on pages 458-459 of ISLR.
+
+### Problem 4
+
+Complete exercise 6 on page 459 of ISLR.
+
+
+### Problem 5
+
+a. Use the `brulee` package to train a single layer neural network with 10 nodes for the binary classification problem for the `Default` data set from the `ISLR2` package. Specify the values you use for the epochs and learning rate. Make sure plot the ROC curve and compute the AUC for a test set. 
+
+b. Do the same thing as in part a, but this time, add the argument `dropout = 0.2` to the `brulee_mlp` function. Use the same values for the epochs and learning rate that you used in part a. Again, make sure plot the ROC curve and compute the AUC for a test set. Do you notice any difference in the results compared with part a?
