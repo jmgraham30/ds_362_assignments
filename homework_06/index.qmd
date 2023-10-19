@@ -59,7 +59,7 @@ Complete exercise 4 on pages 458-459 of ISLR.
 
 ### Problem 4
 
-Complete exercise 6 on page 459 of ISLR.
+Complete exercise 6 on page 459 of ISLR. For part (a), plot the function in R like we did in our gradient descent example in Lesson 7. Also, state the number of local and global minima the function has.  
 
 
 ### Problem 5
