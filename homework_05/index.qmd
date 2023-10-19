@@ -80,7 +80,7 @@ wind_res
 
 ```
 
-In the previous code, three are three regression models `basic_rec` (includes all predictors), `rotor_hub_rec` (removes the commissioning data predictor), and `commissioning_rec` (removes the rotor and hub measurement variables).  
+In the previous code, there are three regression models `basic_rec` (includes all predictors), `rotor_hub_rec` (removes the commissioning data predictor), and `commissioning_rec` (removes the rotor and hub measurement variables).  
 
 d. Use the `autoplot` function from plot the results stored in `wind_res`. In terms of the metric collected, are any of the models better or worse than the model with all predictors included? **Hint:** The `rank_results` function might be helpful here. 
 

@@ -127,7 +127,7 @@ wind_res &lt;-
   
 wind_res  
 </code></pre>
-<p>In the previous code, three are three regression models <code>basic_rec</code> (includes all predictors), <code>rotor_hub_rec</code> (removes the commissioning data predictor), and <code>commissioning_rec</code> (removes the rotor and hub measurement variables).</p>
+<p>In the previous code, there are three regression models <code>basic_rec</code> (includes all predictors), <code>rotor_hub_rec</code> (removes the commissioning data predictor), and <code>commissioning_rec</code> (removes the rotor and hub measurement variables).</p>
 <ol start="4" type="a">
 <li><p>Use the <code>autoplot</code> function from plot the results stored in <code>wind_res</code>. In terms of the metric collected, are any of the models better or worse than the model with all predictors included? <strong>Hint:</strong> The <code>rank_results</code> function might be helpful here.</p></li>
 <li><p>Finally, choose the one of the three models that you prefer, fit it to the full training set and then predict on the test set and compute the test rmse and rsq values.</p></li>
