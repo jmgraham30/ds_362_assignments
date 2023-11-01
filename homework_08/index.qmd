@@ -1,0 +1,276 @@
+---
+title: "DS 362 Homework 8"
+subtitle: "SVMs Lab"
+author: "Your Name"
+format: 
+  html:
+    theme: pulse  
+    toc: true
+---
+  
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(tidymodels)
+library(tidyclust)
+library(factoextra)
+library(ISLR2)
+library(ggthemes)
+library(proxy)
+library(patchwork)
+
+
+tidymodels_prefer()
+
+theme_set(theme_minimal(base_size = 12))
+
+penguins <- penguins %>%
+  drop_na()
+
+```
+
+
+This is Homework Assignment 8 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_08/index.qmd).
+
+For your amusement: What is a bee that can't make up their mind? A maybe. 
+
+## Instructions 
+
+This homework corresponds to a lab assignment on unsupervised leanring methods with an emphasis on PCA and clustering. Please go through the lab, answering the questions or responding to the prompts as appropriate. 
+
+1. Download the Quarto notebook for this assignment from the course learning management system
+
+2. In the header, add your name as the author. 
+
+3. Please complete and turn in this assignment as a Quarto notebook. 
+
+## Lab
+
+### Principal Components Analysis
+
+Here we will apply PCA to the `USArrests` data set. We begin by turning `USArrests` into a tibble and move the rownames into a column.
+
+```{r}
+USArrests <- as_tibble(USArrests, rownames = "state")
+USArrests
+```
+
+Notice how the mean of each of the variables is quite different. If we were to apply PCA directly to the data set then `Murder` would have a very small influence.
+
+```{r}
+USArrests %>%
+  select(-state) %>%
+  map_dfr(mean)
+```
+
+We will show how to perform PCA in two different ways in this section. First, by using `prcomp()` directly, using `broom::tidy()` to extract the information we need, and secondly by using recipes. `prcomp()` takes 1 required argument `x` which much be a fully numeric data.frame or matrix. Then we pass that to `prcomp()`. We also set `scale = TRUE` in `prcomp()` which will perform the scaling we need.
+
+**Exercise 1:** Create a new code chunk and perform PCA on the `USArrests` data set using `prcomp()` like we did with the `penguins` data set in lecture. Note that you will have to remove the `state` column before passing the data to `prcomp()`. Assign your results to a variable called `USArrests_pca`. 
+
+**Exercise 2:** Create a new code chunk and use the `tidy` function from the `broom` package to extract the information we need from the `USArrests_pca` object. Assign your results to a variable called `USArrests_pca_tidy`. Explain what each of the columns in `USArrests_pca_tidy` represent.
+
+**Exercise 3:** In order to get the loadings from our PCA, we need to modify an optional argument in the `tidy` function. Specifically, to get the loadings, use `tidy(USArrests_pca, matrix = "loadings")` create a new code chunk and assign the results to a variable called `USArrests_loadings`. Explain what each of the columns in `USArrests_loadings` represent.
+
+We can use the output from the `tidy` function to plot the results of a PCA. From example, 
+
+```
+tidy(USArrests_pca, matrix = "loadings") %>%
+  ggplot(aes(value, column)) +
+  facet_wrap(~ PC) +
+  geom_col() +
+  scale_x_continuous(labels = scales::percent)
+```
+
+**Exercise 4:** Run the previous code in an R code chunk. Explain what the plot is showing.
+
+**Exercise 5:** We are interested in the proportion of variance explained by each principal component. We can also obtain this information from the `tidy` function by modifying the optional argument again to `matrix = "eigenvalues"` and then use the result to create a plot using code such as
+
+```
+tidy(USArrests_pca, matrix = "eigenvalues") %>%
+  ggplot(aes(PC, percent)) +
+  geom_col()
+```
+
+Run the previous code in an R code chunk. Explain what the plot is showing.
+
+**Exercise 6:** Create a plot of the first two principal components using for the `USArrests` data set. Explain what the plot is showing.
+
+
+### PCA with Recipes
+
+We can also perform PCA using recipes. This is useful to know about because PCA is often applied as a preprocessing step for other models. Let's apply this approach to the `USArrests` data set again.
+
+Here is how we build our recipe: First, use `step_normalize()` to make sure all the variables are on the same scale. By using `all_numeric()` we are able to apply PCA on the variables we want without having to remove `state`. We are also setting an `id` for `step_pca()` to make it easier to `tidy()` later.
+
+```{r}
+pca_rec <- recipe(~., data = USArrests) %>%
+  step_normalize(all_numeric()) %>%
+  step_pca(all_numeric(), id = "pca") %>%
+  prep()
+```
+
+**Exercise 7:** Call `bake(pca_rec, new_data = NULL)`. What does this produce? 
+
+**Exercise 8:** Call `tidy(pca_rec,id="pca")`. What does this produce?
+
+**Exercise 9:** Call `tidy(pca_rec,id="pca",type = "variance")`. What does this produce?
+
+
+### Further Dimensionality Reduction
+
+
+### Clustering
+
+#### Kmeans Clustering
+
+We will be using the `tidyclust` package to perform these clustering tasks. It has a similar interface to `parsnip`, and works well with the rest of `tidymodels`. First, you will go through some code to learn how to use `tidyclust` and then you will use what you learn and modify the provided code to perform clustering on a different data set.
+
+Before we get going let us create a synthetic data set that we know has groups.
+
+```{r}
+set.seed(2)
+
+x_df <- tibble(
+  V1 = rnorm(n = 50, mean = rep(c(0, 3), each = 25)),
+  V2 = rnorm(n = 50, mean = rep(c(0, -4), each = 25))
+)
+```
+
+And we can plot it with ggplot2 to see that the groups are really there. Note that we didn't include this grouping information in `x_df` as we are trying to emulate a situation where we don't know of the possible underlying clusters.
+
+```{r}
+
+x_df %>%
+  ggplot(aes(V1, V2, color = rep(c("A", "B"), each = 25))) +
+  geom_point() +
+  labs(color = "groups")
+```
+
+Now that we have the data, let's create a cluster specification. Since we want to perform k-means clustering, we will use the `k_means()` function from `tidyclust`. We use the `num_clusters` argument to specify how many centroids the K-means algorithm need to use. We also set a mode and engine, which this time are set to the same as the defaults. We also set `nstart = 20`, this allows the algorithm to have multiple initial starting positions, which we use in the hope of finding global maxima instead of local maxima.
+
+```{r}
+kmeans_spec <- k_means(num_clusters = 3) %>%
+  set_mode("partition") %>%
+  set_engine("stats") %>%
+  set_args(nstart = 20)
+
+kmeans_spec
+```
+
+Once we have this specification we can fit it to our data. We remember to set a seed because the K-means algorithm starts with random initialization
+
+```{r}
+set.seed(1234)
+kmeans_fit <- kmeans_spec %>%
+  fit(~., data = x_df)
+```
+
+
+This fitted model has a lot of different kinds of information.
+
+```{r}
+kmeans_fit
+```
+
+Another function to inspect your fitted `tidyclust` models is `extract_fit_summary()` which returns all different kind of information
+
+```{r}
+extract_fit_summary(kmeans_fit)
+```
+
+We can also extract some of these quantities directly using `extract_centroids()`
+
+```{r}
+extract_centroids(kmeans_fit)
+```
+
+and `extract_cluster_assignment()`
+
+```{r}
+extract_cluster_assignment(kmeans_fit)
+```
+
+prediction in a clustering model isn't well defined. But we can think of it as "what cluster would these observations be in if they were part of the data set". For the k-means case, it looks at which centroid these observations are closest to.
+
+```{r}
+predict(kmeans_fit, new_data = x_df)
+```
+
+
+Lastly, we can see what cluster each observation belongs to by using `augment()`, which does the same thing as `predict()` but add it to the orginial data set. This makes it handy for EDA and plotting the results.
+
+```{r}
+augment(kmeans_fit, new_data = x_df)
+```
+
+We can visualize the result of `augment()` to see how well the clustering performed.
+
+```{r}
+augment(kmeans_fit, new_data = x_df) %>%
+  ggplot(aes(V1, V2, color = .pred_cluster)) +
+  geom_point()
+```
+
+This is all well and good, but it would be nice if we could try out a number of different clusters and then find the best one. For this we will use `tune_cluster()`. `tune_cluster()` works pretty much like `tune_grid()` expect that it works with cluster models.
+
+```{r}
+kmeans_spec_tuned <- kmeans_spec %>% 
+  set_args(num_clusters = tune())
+
+kmeans_wf <- workflow() %>%
+  add_model(kmeans_spec_tuned) %>%
+  add_formula(~.)
+```
+
+
+now we can use this workflow with `tune_cluster()` to fit it many times for different values of `num_clusters`.
+
+```{r}
+set.seed(1234)
+x_boots <- bootstraps(x_df, times = 10)
+
+num_clusters_grid <- tibble(num_clusters = seq(1, 10))
+
+tune_res <- tune_cluster(
+  object = kmeans_wf,
+  resamples = x_boots,
+  grid = num_clusters_grid
+)
+```
+
+And we can use `collect_metrics()` as before
+
+```{r}
+tune_res %>%
+  collect_metrics()
+```
+
+Now that we have the total within-cluster sum-of-squares we can plot them against `k` so we can use the [elbow method](https://en.wikipedia.org/wiki/Elbow_method_(clustering)) to find the optimal number of clusters. This actually pops right out if we use `autoplot()` on the results.
+
+```{r}
+tune_res %>%
+  autoplot()
+```
+
+We see an elbow when the number of clusters is equal to 2 which makes us happy since the data set is specifically created to have 2 clusters. We can now construct the final kmeans model
+
+```{r}
+final_kmeans <- kmeans_wf %>%
+  update_model(kmeans_spec %>% set_args(num_clusters = 2)) %>%
+  fit(x_df)
+```
+
+And we can finish by visualizing the clusters it found.
+
+```{r}
+augment(final_kmeans, new_data = x_df) %>%
+  ggplot(aes(V1, V2, color = .pred_cluster)) +
+  geom_point()
+```
+
+
+**Exercise 10:** Apply what you just learned about k-means clustering to the four numerical variables in the `penguins` data set. This data set is loaded at the beginning of the notebook for this lab. 
+
