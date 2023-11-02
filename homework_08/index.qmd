@@ -21,6 +21,7 @@ library(ISLR2)
 library(ggthemes)
 library(proxy)
 library(patchwork)
+library(ggforce)
 
 
 tidymodels_prefer()
@@ -51,7 +52,7 @@ This homework corresponds to a lab assignment on unsupervised leanring methods w
 
 ### Principal Components Analysis
 
-Here we will apply PCA to the `USArrests` data set. We begin by turning `USArrests` into a tibble and move the rownames into a column.
+Here we will apply PCA to the `USArrests` data set. We begin by turning `USArrests` into a tibble and move the row names into a column.
 
 ```{r}
 USArrests <- as_tibble(USArrests, rownames = "state")
@@ -66,7 +67,7 @@ USArrests %>%
   map_dfr(mean)
 ```
 
-We will show how to perform PCA in two different ways in this section. First, by using `prcomp()` directly, using `broom::tidy()` to extract the information we need, and secondly by using recipes. `prcomp()` takes 1 required argument `x` which much be a fully numeric data.frame or matrix. Then we pass that to `prcomp()`. We also set `scale = TRUE` in `prcomp()` which will perform the scaling we need.
+We will show how to perform PCA in two different ways in this section. First, by using `prcomp()` directly, using `broom::tidy()` to extract the information we need, and secondly by using recipes. `prcomp()` takes 1 required argument `x` which must be a fully numeric data.frame or matrix. Then we pass that to `prcomp()`. We also set `scale = TRUE` in `prcomp()` which will perform the scaling we need.
 
 **Exercise 1:** Create a new code chunk and perform PCA on the `USArrests` data set using `prcomp()` like we did with the `penguins` data set in lecture. Note that you will have to remove the `state` column before passing the data to `prcomp()`. Assign your results to a variable called `USArrests_pca`. 
 
@@ -118,10 +119,28 @@ pca_rec <- recipe(~., data = USArrests) %>%
 
 **Exercise 9:** Call `tidy(pca_rec,id="pca",type = "variance")`. What does this produce?
 
+Another way to visualize the results of PCA is as follows:
 
-### Further Dimensionality Reduction
+```{r}
+penguins_X <- recipe(species ~ body_mass_g + flipper_length_mm + bill_length_mm + bill_depth_mm, data = penguins) %>% 
+  step_normalize(all_numeric()) %>% 
+  step_pca(all_numeric_predictors()) %>%
+  prep() %>% bake(penguins)
+
+penguins_X %>%
+  ggplot() +
+    geom_autopoint(aes(color=species)) +
+    geom_autodensity(alpha = .3) +
+    facet_matrix(vars(-species), layer.diag = 2) +
+    scale_color_colorblind() +
+    labs(color = "species")
+  
+```
+
+**Exercise 10:** Is there a pair of principal components that separates the species well? Explain.
 
 
+**Exercise 11:** Create a plot for the `USArrests` data set that is similar to the one we just made for the principal components for the `penguins` data. Explain what the plot is showing.
 
 
 
@@ -275,7 +294,7 @@ augment(final_kmeans, new_data = x_df) %>%
 ```
 
 
-**Exercise 10:** Apply what you just learned about k-means clustering to the four numerical variables in the `penguins` data set. This data set is loaded at the beginning of the notebook for this lab. 
+**Exercise 12:** Apply what you just learned about k-means clustering to the four numerical variables in the `penguins` data set. This data set is loaded at the beginning of the notebook for this lab. 
 
 We will use the `hier_clust()` function from `tidyclust` to perform hierarchical clustering and to compare the different agglomeration methods. The following code shows how to perform hierarchical clustering using the complete linkage method. 
 
@@ -299,8 +318,10 @@ hier_fit %>%
   fviz_dend(main = "complete", k = 2)
 ```
 
-**Exercise 11:** Modify the code above to perform hierarchical clustering using the average linkage method and the single linkage method. Plot the results using `fviz_dend` and compare and contrast the results you obtain using the three different methods: complete, average, and single.
+**Exercise 13:** Modify the code above to perform hierarchical clustering using the average linkage method and the single linkage method. Plot the results using `fviz_dend` and compare and contrast the results you obtain using the three different methods: complete, average, and single.
 
+
+### Further Dimensionality Reduction
 
 
 
