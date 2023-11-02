@@ -274,3 +274,30 @@ augment(final_kmeans, new_data = x_df) %>%
 
 **Exercise 10:** Apply what you just learned about k-means clustering to the four numerical variables in the `penguins` data set. This data set is loaded at the beginning of the notebook for this lab. 
 
+We will use the `hier_clust()` function from `tidyclust` to perform hierarchical clustering and to compare the different agglomeration methods. The following code shows how to perform hierarchical clustering using the complete linkage method. 
+
+```{r}
+#| message: false
+#| warning: false
+
+
+hier_rec <- recipe(~., data = x_df) %>%
+  step_normalize(all_numeric_predictors())
+
+hier_wf <- workflow() %>%
+  add_recipe(hier_rec) %>%
+  add_model(hier_clust(linkage_method = "complete"))
+
+hier_fit <- hier_wf %>%
+  fit(data = x_df) 
+
+hier_fit %>%
+  extract_fit_engine() %>%
+  fviz_dend(main = "complete", k = 2)
+```
+
+**Exercise 11:** Modify the code above to perform hierarchical clustering using the average linkage method and the single linkage method. Plot the results using `fviz_dend` and compare and contrast the results you obtain using the three different methods: complete, average, and single.
+
+
+
+
