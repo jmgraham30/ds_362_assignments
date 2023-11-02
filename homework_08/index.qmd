@@ -22,6 +22,7 @@ library(ggthemes)
 library(proxy)
 library(patchwork)
 library(ggforce)
+library(embed)
 
 
 tidymodels_prefer()
@@ -46,7 +47,9 @@ This homework corresponds to a lab assignment on unsupervised leanring methods w
 
 2. In the header, add your name as the author. 
 
-3. Please complete and turn in this assignment as a Quarto notebook. 
+3. Make sure that you have all the necessary packages installed. 
+
+4. Please complete and turn in this assignment as a Quarto notebook. 
 
 ## Lab
 
@@ -124,7 +127,7 @@ Another way to visualize the results of PCA is as follows:
 ```{r}
 penguins_X <- recipe(species ~ body_mass_g + flipper_length_mm + bill_length_mm + bill_depth_mm, data = penguins) %>% 
   step_normalize(all_numeric()) %>% 
-  step_pca(all_numeric_predictors()) %>%
+  step_pca(all_numeric_predictors(),num_comp = 4) %>%
   prep() %>% bake(penguins)
 
 penguins_X %>%
@@ -322,6 +325,30 @@ hier_fit %>%
 
 
 ### Further Dimensionality Reduction
+
+Uniform manifold approximation and projection (UMAP) is another dimensionality reduction technique, but it works very differently than PCA. To implement UMAP, we will use the `step_umap()` function as part of a recipe. The following code shows how to use `step_umap()` to reduce the dimensionality of the `penguins` data set. 
+
+```{r}
+
+penguins_X <- recipe(species ~ body_mass_g + flipper_length_mm + bill_length_mm + bill_depth_mm, data = penguins) %>% 
+  step_normalize(all_numeric()) %>% 
+  step_umap(all_numeric_predictors(),num_comp = 4) %>%
+  prep() %>% bake(penguins)
+
+penguins_X %>%
+  ggplot() +
+    geom_autopoint(aes(color=species)) +
+    geom_autodensity(alpha = .3) +
+    facet_matrix(vars(-species), layer.diag = 2) +
+    scale_color_colorblind() +
+    labs(color = "species")
+
+```
+
+**Exercise 14:** How well does UMAP separate the species compared with PCA?
+
+**Exercise 15:** Apply UMAP to the `USArrests` data set and make a plot similar to the previous one for the `penguins` data.     
+
 
 
 

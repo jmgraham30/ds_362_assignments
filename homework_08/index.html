@@ -125,6 +125,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ol type="1">
 <li><p>Download the Quarto notebook for this assignment from the course learning management system</p></li>
 <li><p>In the header, add your name as the author.</p></li>
+<li><p>Make sure that you have all the necessary packages installed.</p></li>
 <li><p>Please complete and turn in this assignment as a Quarto notebook.</p></li>
 </ol>
 </section>
@@ -200,7 +201,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>penguins_X <span class="ot">&lt;-</span> <span class="fu">recipe</span>(species <span class="sc">~</span> body_mass_g <span class="sc">+</span> flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> bill_depth_mm, <span class="at">data =</span> penguins) <span class="sc">%&gt;%</span> </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_pca</span>(<span class="fu">all_numeric_predictors</span>(),<span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">%&gt;%</span> <span class="fu">bake</span>(penguins)</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>penguins_X <span class="sc">%&gt;%</span></span>
@@ -519,6 +520,26 @@ Levels: Cluster_1 Cluster_2 Cluster_3</code></pre>
 </section>
 <section id="further-dimensionality-reduction" class="level3">
 <h3 class="anchored" data-anchor-id="further-dimensionality-reduction">Further Dimensionality Reduction</h3>
+<p>Uniform manifold approximation and projection (UMAP) is another dimensionality reduction technique, but it works very differently than PCA. To implement UMAP, we will use the <code>step_umap()</code> function as part of a recipe. The following code shows how to use <code>step_umap()</code> to reduce the dimensionality of the <code>penguins</code> data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>penguins_X <span class="ot">&lt;-</span> <span class="fu">recipe</span>(species <span class="sc">~</span> body_mass_g <span class="sc">+</span> flipper_length_mm <span class="sc">+</span> bill_length_mm <span class="sc">+</span> bill_depth_mm, <span class="at">data =</span> penguins) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_umap</span>(<span class="fu">all_numeric_predictors</span>(),<span class="at">num_comp =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prep</span>() <span class="sc">%&gt;%</span> <span class="fu">bake</span>(penguins)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>penguins_X <span class="sc">%&gt;%</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_autopoint</span>(<span class="fu">aes</span>(<span class="at">color=</span>species)) <span class="sc">+</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_autodensity</span>(<span class="at">alpha =</span> .<span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_matrix</span>(<span class="fu">vars</span>(<span class="sc">-</span>species), <span class="at">layer.diag =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_colorblind</span>() <span class="sc">+</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"species"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>Exercise 14:</strong> How well does UMAP separate the species compared with PCA?</p>
+<p><strong>Exercise 15:</strong> Apply UMAP to the <code>USArrests</code> data set and make a plot similar to the previous one for the <code>penguins</code> data.</p>
 </section>
 </section>
 
