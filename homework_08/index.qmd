@@ -122,6 +122,9 @@ pca_rec <- recipe(~., data = USArrests) %>%
 ### Further Dimensionality Reduction
 
 
+
+
+
 ### Clustering
 
 #### Kmeans Clustering
