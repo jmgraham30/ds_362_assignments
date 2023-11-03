@@ -1,6 +1,6 @@
 ---
 title: "DS 362 Homework 8"
-subtitle: "SVMs Lab"
+subtitle: "Unsupervised Learning Lab"
 author: "Your Name"
 format: 
   html:
