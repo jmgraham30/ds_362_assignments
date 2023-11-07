@@ -29,17 +29,39 @@ For this assignment, you should create and work in an RStudio project named `cas
 
 ### Hyperparameter Tuning and Model Comparison Case Study
 
+In this part of the assignment, you are asked to model a data set on sightings of [unidentified flying objects](https://en.wikipedia.org/wiki/Unidentified_flying_object) (UFOs). This data is modified from a [TidyTuesday](https://github.com/rfordatascience/tidytuesday/tree/master) data set available through [this repository](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-06-20/readme.md) but originates from [the National UFO Reporting Center](https://nuforc.org/ndx/?id=shape).
+
+To read in the data, run the following code:
+
 ```{r}
 #| message: false
 ufo_df <- read_csv("https://raw.githubusercontent.com/jmgraham30/modeling_case_study_2_data/main/ufo_df.csv")
 ```
 
-
+Now, we can see what is contained in our data set:
 
 ```{r}
 glimpse(ufo_df)
 ```
 
+The data set contains the following variables:
+
+- Response variable: `shape` - the shape of the UFO. This is a binary categorical variable that records whether the object for which the sighting was reported had a fixed geometric shape or some kind of amorphous dynamic shape.
+
+- Predictor variables: 
+
+    - `duration_seconds` - the duration of the sighting in seconds.
+    
+    - `day_part` - whether the reported sighting occurred in the morning, afternoon, or night. 
+    
+    - `latitude` - the latitude of the sighting.
+    
+    - `longitude` - the longitude of the sighting.
+    
+    - `population` - the population of the city in which the reported sighting occurred. 
+    
+    - `elevation_m` - the elevation in meters for the city in which the reported sighting occurred. 
+    
 
 
 ### Unsupervised Learning Case Study

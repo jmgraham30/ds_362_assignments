@@ -101,9 +101,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For this assignment, you should create and work in an RStudio project named <code>case_study_2_lastname</code> where you will replace the <code>lastname</code> part with your last name. You should create either an appropriately names Quarto notebook or an appropriately names R script to save all you code in. Finally, you should maintain your project as a GitHub repository.</p>
 <section id="hyperparameter-tuning-and-model-comparison-case-study" class="level3">
 <h3 class="anchored" data-anchor-id="hyperparameter-tuning-and-model-comparison-case-study">Hyperparameter Tuning and Model Comparison Case Study</h3>
+<p>In this part of the assignment, you are asked to model a data set on sightings of <a href="https://en.wikipedia.org/wiki/Unidentified_flying_object">unidentified flying objects</a> (UFOs). This data is modified from a <a href="https://github.com/rfordatascience/tidytuesday/tree/master">TidyTuesday</a> data set available through <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-06-20/readme.md">this repository</a> but originates from <a href="https://nuforc.org/ndx/?id=shape">the National UFO Reporting Center</a>.</p>
+<p>To read in the data, run the following code:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ufo_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/jmgraham30/modeling_case_study_2_data/main/ufo_df.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Now, we can see what is contained in our data set:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ufo_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -118,6 +121,19 @@ $ population       &lt;dbl&gt; 3430, 41426, 17712, 24598, 14907, 115056, 44581, 
 $ elevation_m      &lt;dbl&gt; 184, 274, 27, 221, 175, 260, 236, 169, 95, 21, 648, 1…</code></pre>
 </div>
 </div>
+<p>The data set contains the following variables:</p>
+<ul>
+<li><p>Response variable: <code>shape</code> - the shape of the UFO. This is a binary categorical variable that records whether the object for which the sighting was reported had a fixed geometric shape or some kind of amorphous dynamic shape.</p></li>
+<li><p>Predictor variables:</p>
+<ul>
+<li><p><code>duration_seconds</code> - the duration of the sighting in seconds.</p></li>
+<li><p><code>day_part</code> - whether the reported sighting occurred in the morning, afternoon, or night.</p></li>
+<li><p><code>latitude</code> - the latitude of the sighting.</p></li>
+<li><p><code>longitude</code> - the longitude of the sighting.</p></li>
+<li><p><code>population</code> - the population of the city in which the reported sighting occurred.</p></li>
+<li><p><code>elevation_m</code> - the elevation in meters for the city in which the reported sighting occurred.</p></li>
+</ul></li>
+</ul>
 </section>
 <section id="unsupervised-learning-case-study" class="level3">
 <h3 class="anchored" data-anchor-id="unsupervised-learning-case-study">Unsupervised Learning Case Study</h3>
