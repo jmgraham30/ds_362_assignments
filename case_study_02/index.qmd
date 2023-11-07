@@ -132,6 +132,6 @@ Use PCA to reduce the dimension of the nutritional content of the beverages. Wha
 
 #### Part B: Clustering
 
-Use both $k$-means clustering and hierarchical clustering to cluster the beverages based on their nutritional content. Make sure to interpret your results.
+Use both $k$-means clustering and hierarchical clustering to cluster the beverages based on their nutritional content. For $k$-means clustering, compare $k = 2$, $k=3$, $k=5$, and $k=10$. Make sure to interpret your results.
 
 
