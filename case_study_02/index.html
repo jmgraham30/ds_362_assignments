@@ -68,6 +68,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -165,41 +167,47 @@ $ elevation_m      &lt;dbl&gt; 184, 274, 27, 221, 175, 260, 236, 169, 95, 21, 64
 </div>
 <p>You can load the data by running the following command:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>starbucks_df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-12-21/starbucks.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 1147 Columns: 15
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (4): product_name, size, trans_fat_g, fiber_g
-dbl (11): milk, whip, serv_size_m_l, calories, total_fat_g, saturated_fat_g,...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>starbucks_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-12-21/starbucks.csv'</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">trans_fat_g =</span> <span class="fu">as.numeric</span>(trans_fat_g),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">fiber_g =</span> <span class="fu">as.numeric</span>(fiber_g)) <span class="sc">%&gt;%</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(product_name,size,milk,whip,serv_size_m_l))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we can see what is contained in our data set:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starbucks_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starbucks_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 1,147
-Columns: 15
-$ product_name    &lt;chr&gt; "brewed coffee - dark roast", "brewed coffee - dark ro…
-$ size            &lt;chr&gt; "short", "tall", "grande", "venti", "short", "tall", "…
-$ milk            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, …
-$ whip            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-$ serv_size_m_l   &lt;dbl&gt; 236, 354, 473, 591, 236, 354, 473, 591, 236, 354, 473,…
+Columns: 10
 $ calories        &lt;dbl&gt; 3, 4, 5, 5, 3, 4, 5, 5, 3, 4, 5, 5, 3, 4, 5, 5, 35, 50…
 $ total_fat_g     &lt;dbl&gt; 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1,…
 $ saturated_fat_g &lt;dbl&gt; 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,…
-$ trans_fat_g     &lt;chr&gt; "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0",…
+$ trans_fat_g     &lt;dbl&gt; 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,…
 $ cholesterol_mg  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10,…
 $ sodium_mg       &lt;dbl&gt; 5, 10, 10, 10, 5, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, …
 $ total_carbs_g   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, …
-$ fiber_g         &lt;chr&gt; "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0",…
+$ fiber_g         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
 $ sugar_g         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, …
 $ caffeine_mg     &lt;dbl&gt; 130, 193, 260, 340, 15, 20, 25, 30, 155, 235, 310, 410…</code></pre>
 </div>
 </div>
+<p>The data set contains a number of numerical variables:</p>
+<ul>
+<li><p><code>calories</code> - the number of calories in the beverage, and</p></li>
+<li><p>several measurements on the nutritional content of the beverage.</p></li>
+</ul>
+<p>We will focus on two tasks:</p>
+<ol type="1">
+<li><p>Dimension reduction for the nutritional content of the beverages.</p></li>
+<li><p>Clustering the beverages based on their nutritional content.</p></li>
+</ol>
+<section id="part-a-dimension-reduction" class="level4">
+<h4 class="anchored" data-anchor-id="part-a-dimension-reduction">Part A: Dimension Reduction</h4>
+<p>Use PCA to reduce the dimension of the nutritional content of the beverages. Make sure to interpret your results.</p>
+</section>
+<section id="part-b-clustering" class="level4">
+<h4 class="anchored" data-anchor-id="part-b-clustering">Part B: Clustering</h4>
+<p>Use both <span class="math inline">\(k\)</span>-means clustering and hierarchical clustering to cluster the beverages based on their nutritional content. Make sure to interpret your results.</p>
+</section>
 </section>
 </section>
 

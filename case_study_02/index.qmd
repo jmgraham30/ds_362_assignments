@@ -95,9 +95,14 @@ This data set comes from a [TidyTuesday repository](https://github.com/rfordatas
 You can load the data by running the following command:
 
 ```{r}
+#| message: false
+#| warning: false
+
+
 starbucks_df <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-12-21/starbucks.csv') %>%
   mutate(trans_fat_g = as.numeric(trans_fat_g),
-         fiber_g = as.numeric(fiber_g))
+         fiber_g = as.numeric(fiber_g)) %>%
+  select(-c(product_name,size,milk,whip,serv_size_m_l))
 
 ```
 
@@ -107,5 +112,26 @@ Now, we can see what is contained in our data set:
 ```{r}
 glimpse(starbucks_df)
 ```
+
+The data set contains a number of numerical variables:
+
+- `calories` - the number of calories in the beverage, and
+
+- several measurements on the nutritional content of the beverage. 
+
+We will focus on two tasks:
+
+1. Dimension reduction for the nutritional content of the beverages.
+
+2. Clustering the beverages based on their nutritional content.
+
+
+#### Part A: Dimension Reduction
+
+Use PCA to reduce the dimension of the nutritional content of the beverages. Make sure to interpret your results.
+
+#### Part B: Clustering
+
+Use both $k$-means clustering and hierarchical clustering to cluster the beverages based on their nutritional content. Make sure to interpret your results.
 
 
