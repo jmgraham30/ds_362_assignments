@@ -9,7 +9,7 @@ For your amusement: What did the paper say to the pencil? Write on!
 
 ## Assignment Overview and Instructions 
 
-The goal of this modeling case study is for you to get hands-on experience in going through the steps of a machine learning problem from beginning to end with provided data. The case studies in this assignment will focus on regression and classification methods that have been covered in class so far or are similiar to those we have covered in class so far. 
+The goal of this modeling case study is for you to get hands-on experience in going through the steps of a machine learning problem from beginning to end with provided data. The case studies in this assignment will focus on regression and classification methods that have been covered in class so far or are similar to those we have covered in class so far. 
 
 For this assignment, you should create and work in an RStudio project named `case_study_1_lastname` where you will replace the `lastname` part with your last name. Also, you should create two Quarto notebooks to work in, one titled `regression_problem.qmd` and the other titled `classification_problem.qmd`. Finally, you should maintain your project as a GitHub repository. 
 
