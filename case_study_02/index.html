@@ -156,6 +156,50 @@ $ elevation_m      &lt;dbl&gt; 184, 274, 27, 221, 175, 260, 236, 169, 95, 21, 64
 </section>
 <section id="unsupervised-learning-case-study" class="level3">
 <h3 class="anchored" data-anchor-id="unsupervised-learning-case-study">Unsupervised Learning Case Study</h3>
+<p>In this part of the assignment, you are asked to apply unsupervised learning methods to a data set about <a href="https://www.starbucks.com/">Starbucks</a> beverages.</p>
+<p>This data set comes from a <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2021/2021-12-21/readme.md">TidyTuesday repository</a> that contains an Official Starbucks Nutritional dataset.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://user-images.githubusercontent.com/55933131/146823691-4c19c28c-d2ef-46b5-82bc-76923f5c3256.png" class="img-fluid figure-img" style="width:25.0%"></p>
+</figure>
+</div>
+<p>You can load the data by running the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>starbucks_df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-12-21/starbucks.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1147 Columns: 15
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (4): product_name, size, trans_fat_g, fiber_g
+dbl (11): milk, whip, serv_size_m_l, calories, total_fat_g, saturated_fat_g,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+</div>
+<p>Now, we can see what is contained in our data set:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(starbucks_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,147
+Columns: 15
+$ product_name    &lt;chr&gt; "brewed coffee - dark roast", "brewed coffee - dark ro…
+$ size            &lt;chr&gt; "short", "tall", "grande", "venti", "short", "tall", "…
+$ milk            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, …
+$ whip            &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+$ serv_size_m_l   &lt;dbl&gt; 236, 354, 473, 591, 236, 354, 473, 591, 236, 354, 473,…
+$ calories        &lt;dbl&gt; 3, 4, 5, 5, 3, 4, 5, 5, 3, 4, 5, 5, 3, 4, 5, 5, 35, 50…
+$ total_fat_g     &lt;dbl&gt; 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1,…
+$ saturated_fat_g &lt;dbl&gt; 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,…
+$ trans_fat_g     &lt;chr&gt; "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0",…
+$ cholesterol_mg  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10,…
+$ sodium_mg       &lt;dbl&gt; 5, 10, 10, 10, 5, 10, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, …
+$ total_carbs_g   &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, …
+$ fiber_g         &lt;chr&gt; "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0",…
+$ sugar_g         &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, …
+$ caffeine_mg     &lt;dbl&gt; 130, 193, 260, 340, 15, 20, 25, 30, 155, 235, 310, 410…</code></pre>
+</div>
+</div>
 </section>
 </section>
 
