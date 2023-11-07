@@ -128,10 +128,10 @@ We will focus on two tasks:
 
 #### Part A: Dimension Reduction
 
-Use PCA to reduce the dimension of the nutritional content of the beverages. What is the proportion of variance explained by each of the principal components? Make sure to interpret your results. Include a plot of the first two principal components adding the calories variable as a color aesthetic.
+Use PCA to reduce the dimension of the nutritional content of the beverages. What is the proportion of variance explained by each of the principal components? Plot the loadings as we've done in class. Make sure to interpret your results. Include a plot of the first two principal components adding the calories variable as a color aesthetic.
 
 #### Part B: Clustering
 
-Use both $k$-means clustering and hierarchical clustering to cluster the beverages based on their nutritional content. For $k$-means clustering, compare $k = 2$, $k=3$, $k=5$, and $k=10$. Make sure to interpret your results.
+Use both $k$-means clustering and hierarchical clustering to cluster the beverages based on their nutritional content. For $k$-means clustering, compare $k = 2$, $k=3$, $k=5$, and $k=10$. Make sure to interpret your results. For hierarchical clustering, plot the dendrogram. 
 
 
