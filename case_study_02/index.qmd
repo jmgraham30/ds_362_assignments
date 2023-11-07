@@ -5,7 +5,18 @@ format:
     theme: pulse
 ---
 
+```{r}
+#| include: false
+#| warning: false
+#| message: false
 
+library(tidyverse)
+library(tidymodels)
+
+theme_set(theme_minimal(base_size=13))
+
+tidymodels_prefer()
+```
 
 For your amusement: Where do hamburgers like to dance? At a meatball! 
 
