@@ -128,7 +128,7 @@ We will focus on two tasks:
 
 #### Part A: Dimension Reduction
 
-Use PCA to reduce the dimension of the nutritional content of the beverages. Make sure to interpret your results.
+Use PCA to reduce the dimension of the nutritional content of the beverages. Make sure to interpret your results. Include a plot of the first two principal components adding the calories variable as a color aesthetic.
 
 #### Part B: Clustering
 
