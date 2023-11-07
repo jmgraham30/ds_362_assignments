@@ -29,6 +29,17 @@ For this assignment, you should create and work in an RStudio project named `cas
 
 ### Hyperparameter Tuning and Model Comparison Case Study
 
+```{r}
+#| message: false
+ufo_df <- read_csv("https://raw.githubusercontent.com/jmgraham30/modeling_case_study_2_data/main/ufo_df.csv")
+```
+
+
+
+```{r}
+glimpse(ufo_df)
+```
+
 
 
 ### Unsupervised Learning Case Study

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,6 +101,23 @@ ul.task-list li input[type="checkbox"] {
 <p>For this assignment, you should create and work in an RStudio project named <code>case_study_2_lastname</code> where you will replace the <code>lastname</code> part with your last name. You should create either an appropriately names Quarto notebook or an appropriately names R script to save all you code in. Finally, you should maintain your project as a GitHub repository.</p>
 <section id="hyperparameter-tuning-and-model-comparison-case-study" class="level3">
 <h3 class="anchored" data-anchor-id="hyperparameter-tuning-and-model-comparison-case-study">Hyperparameter Tuning and Model Comparison Case Study</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ufo_df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/jmgraham30/modeling_case_study_2_data/main/ufo_df.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(ufo_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 86,476
+Columns: 7
+$ shape            &lt;chr&gt; "dynamic", "dynamic", "dynamic", "dynamic", "dynamic"…
+$ duration_seconds &lt;dbl&gt; 1200, 300, 1800, 120, 86400, 2400, 57, 480, 180, 360,…
+$ day_part         &lt;chr&gt; "morning", "night", "night", "afternoon", "night", "m…
+$ latitude         &lt;dbl&gt; 45.05443, 34.19731, 41.45704, 39.48061, 43.02033, 42.…
+$ longitude        &lt;dbl&gt; -87.74927, -118.64398, -72.82316, -86.05499, -78.8803…
+$ population       &lt;dbl&gt; 3430, 41426, 17712, 24598, 14907, 115056, 44581, 726,…
+$ elevation_m      &lt;dbl&gt; 184, 274, 27, 221, 175, 260, 236, 169, 95, 21, 648, 1…</code></pre>
+</div>
+</div>
 </section>
 <section id="unsupervised-learning-case-study" class="level3">
 <h3 class="anchored" data-anchor-id="unsupervised-learning-case-study">Unsupervised Learning Case Study</h3>
