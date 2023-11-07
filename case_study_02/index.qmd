@@ -62,6 +62,23 @@ The data set contains the following variables:
     
     - `elevation_m` - the elevation in meters for the city in which the reported sighting occurred. 
     
+In modeling this data, you are asked to follow the approach of the blog post [Evaluate multiple modeling approaches for spam email](https://juliasilge.com/blog/spam-email/). In particular, you should use a workflow set to evaluate multiple possible models.  Further, your modeling should also involve the tuning of hyperparameters of your models.
+    
+#### Part A: EDA
+
+Provide some exploratory plots for the data. Make sure to specifically create some visualizations to show the relationship between the response variable and the predictor variables. 
+
+
+#### Part B: Model Fitting and Comparison
+    
+Choose at least three different types models to fit to the data[^1]. At least one of these types of models should be different from the ones used in the blog post [Evaluate multiple modeling approaches for spam email](https://juliasilge.com/blog/spam-email/). Also, choose at least one type of model that has hyperparameters that need to be tuned. You should have at least one plot each that shows the results of your hyperparameter tuning and model comparisons.
+
+[^1]: Recall that the documentation for the various model specifications available through the `parsnip` package can be found [here](https://parsnip.tidymodels.org/reference/index.html).
+
+
+#### Part C: Model Interpretation and Results
+
+Train and evaluate your final model. Make sure to interpret your model and results in the context of the data. Your work should include at least one plot that shows the performance of your final model. 
 
 
 ### Unsupervised Learning Case Study

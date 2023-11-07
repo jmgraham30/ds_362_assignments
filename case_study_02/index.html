@@ -134,13 +134,32 @@ $ elevation_m      &lt;dbl&gt; 184, 274, 27, 221, 175, 260, 236, 169, 95, 21, 64
 <li><p><code>elevation_m</code> - the elevation in meters for the city in which the reported sighting occurred.</p></li>
 </ul></li>
 </ul>
+<p>In modeling this data, you are asked to follow the approach of the blog post <a href="https://juliasilge.com/blog/spam-email/">Evaluate multiple modeling approaches for spam email</a>. In particular, you should use a workflow set to evaluate multiple possible models. Further, your modeling should also involve the tuning of hyperparameters of your models.</p>
+<section id="part-a-eda" class="level4">
+<h4 class="anchored" data-anchor-id="part-a-eda">Part A: EDA</h4>
+<p>Provide some exploratory plots for the data. Make sure to specifically create some visualizations to show the relationship between the response variable and the predictor variables.</p>
+</section>
+<section id="part-b-model-fitting-and-comparison" class="level4">
+<h4 class="anchored" data-anchor-id="part-b-model-fitting-and-comparison">Part B: Model Fitting and Comparison</h4>
+<p>Choose at least three different types models to fit to the data<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. At least one of these types of models should be different from the ones used in the blog post <a href="https://juliasilge.com/blog/spam-email/">Evaluate multiple modeling approaches for spam email</a>. Also, choose at least one type of model that has hyperparameters that need to be tuned. You should have at least one plot each that shows the results of your hyperparameter tuning and model comparisons.</p>
+</section>
+<section id="part-c-model-interpretation-and-results" class="level4">
+<h4 class="anchored" data-anchor-id="part-c-model-interpretation-and-results">Part C: Model Interpretation and Results</h4>
+<p>Train and evaluate your final model. Make sure to interpret your model and results in the context of the data. Your work should include at least one plot that shows the performance of your final model.</p>
+</section>
 </section>
 <section id="unsupervised-learning-case-study" class="level3">
 <h3 class="anchored" data-anchor-id="unsupervised-learning-case-study">Unsupervised Learning Case Study</h3>
 </section>
 </section>
 
-</main>
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Recall that the documentation for the various model specifications available through the <code>parsnip</code> package can be found <a href="https://parsnip.tidymodels.org/reference/index.html">here</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
