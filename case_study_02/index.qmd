@@ -31,6 +31,8 @@ For this assignment, you should create and work in an RStudio project named `cas
 
 In this part of the assignment, you are asked to model a data set on sightings of [unidentified flying objects](https://en.wikipedia.org/wiki/Unidentified_flying_object) (UFOs). This data is modified from a [TidyTuesday](https://github.com/rfordatascience/tidytuesday/tree/master) data set available through [this repository](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-06-20/readme.md) but originates from [the National UFO Reporting Center](https://nuforc.org/ndx/?id=shape).
 
+![A UFO, figure from [The New Yorker](https://www.newyorker.com/culture/photo-booth/the-enticing-mysteries-of-ufo-photography)](https://media.newyorker.com/photos/64ca89f569af7f8649142d29/1:1/w_1010,h_1010,c_limit/Wiley-UFO-03.jpg){width=25% fig-align="center"}
+
 To read in the data, run the following code:
 
 ```{r}
