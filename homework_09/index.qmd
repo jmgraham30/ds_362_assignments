@@ -1,0 +1,132 @@
+---
+title: "DS 362 Homework 9"
+subtitle: "Reinforcement Learning"
+author: "Your Name"
+format: 
+  html:
+    theme: pulse  
+    toc: true
+---
+  
+```{r}
+#| include: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(ggthemes)
+library(ReinforcementLearning)
+
+theme_set(theme_minimal(base_size = 12))
+
+```
+
+
+This is Homework Assignment 9 for DS 362. You can view the source code for this assignment on GitHub: [view the source code](https://github.com/jmgraham30/ds_362_assignments/blob/main/homework_09/index.qmd).
+
+For your amusement: Why did the robot win the dance contest? Because it was a dancing machine. 
+
+## Instructions 
+
+This homework provides an introduction to [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) (RL) as a machine learning paradigm. In working through this, you will get an overview of RL and get some experience using the `ReinforcementLearning` package for R. Please go through the assignment, answering the questions or responding to the prompts as appropriate. 
+
+1. Download the Quarto notebook for this assignment from the course learning management system.
+
+2. In the header, add your name as the author. 
+
+3. Please complete and turn in this assignment as a Quarto notebook.
+
+## Part I
+
+In this part, you are asked to watch portions of the first lecture for the Stanford course CS 234: [Reinforcement Learning](http://web.stanford.edu/class/cs234/index.html) (RL) taught by Professor [Emma Brunskill](https://cs.stanford.edu/people/ebrun/) and answer the provided questions. 
+
+Skim through the questions below and then watch from 00:01:38 to 00:16:03  and 00:22:04 to 1:04:00 of [this video](https://youtu.be/FgzM3zpZ55o?si=0F5Ug5ZCHVRzmMQ8). As you go through the video, answer the questions below.
+
+1. What is a single sentence that describes reinforcement learning? 
+
+2. Why would an agent need to be intelligent? 
+
+3. What are three example applications of RL?
+
+4. What are delayed consequences and some of the challenges they present to learning? 
+
+5. What is meant by "policy"?
+
+6. Compare and contrast reinforcement learning, supervised learning, and unsupervised learning in the context of the four key concepts of RL: optimization, generalization, exploration, and delayed consequences.
+
+7. Describe sequential decision making and give an example. 
+
+8. What is meant by "state" and what is the Markov assumption?
+
+9. Why is the Markov assumption popular? 
+
+10. What are the key challenges in learning to make good sequential decisions?
+
+11. Describe exploration versus exploitation and give an example.
+exploration, and delayed consequences.
+
+
+## Part II
+
+
+Here we give an introduction to the `ReinforcementLearning` package for R. This package allows one to perform model-free reinforcement in R. The implementation uses input data in the form of sample sequences consisting of states, actions and rewards. Based on such training examples, the package allows a reinforcement learning agent to learn an optimal policy that defines the best possible action in each state. 
+
+The `ReinforcementLearning` package utilizes different mechanisms for reinforcement learning, including Q-learning and experience replay. It thereby learns an optimal policy based on past experience in the form of sample sequences consisting of states, actions and rewards. Consequently, each training example consists of a state-transition tuple $(s_{i},a_{i},r_{i+1},s_{i+1})$
+ as follows:
+
+* $s_{i}$ is the current environment state.
+
+* $a_{i}$ denotes the selected action in the current state.
+
+* $r_{i+1}$ specifies the immediate reward received after transitioning from the current state to the next state.
+
+* $s_{i+1}$ refers to the next environment state.
+
+The training examples for reinforcement learning can (1) be collected from an external source and inserted into a tabular data structure, or (2) generated dynamically by querying a function that defines the behavior of the environment. In both cases, the corresponding input must follow the same tuple structure $(s_{i},a_{i},r_{i+1},s_{i+1})$. We detail both variants in the following.
+
+We demonstrate the capabilities of the `ReinforcementLearning` package when using state-transition tuples from an external source without the need for modeling the dynamics of the environment.
+
+The following example utilizes the `tictactoe` data set. 
+
+**Exercise 1:** After installing and loading the `ReinforcementLearning` package, run the command `?tictactoe` in the R console and read the documentation for the `tictactoe` data set. What is contained in the data set? 
+
+The main function of `ReinforcementLearning` is `ReinforcementLearning()`. This function teaches a reinforcement learning agent using the previous input data. For this purpose, it requires the following arguments: (1) A data argument that must be a data frame object in which each row represents a state transition tuple $(s_{i},a_{i},r_{i+1},s_{i+1})$. (2) The column names of the individual tuple elements within data.
+
+Several parameters can be provided to in order to customize the learning behavior of the agent.
+
+* **alpha** The learning rate, set between 0 and 1. Setting it to 0 means that the Q-values are never updated and, hence, nothing is learned. Setting a high value, such as 0.9, means that learning can occur quickly.
+
+* **gamma** Discount factor, set between 0 and 1. Determines the importance of future rewards. A factor of 0 will render the agent short-sighted by only considering current rewards, while a factor approaching 1 will cause it to strive for a greater reward over the long run.
+
+* **epsilon** Exploration parameter, set between 0 and 1. Defines the exploration mechanism in $\epsilon$-greedy action selection. In this strategy, the agent explores the environment by selecting an action at random with probability $\epsilon$. Alternatively, the agent exploits its current knowledge by choosing the optimal action with probability $1-\epsilon$. This parameter is only required for sampling new experience based on an existing policy.
+
+* **iter** Number of repeated learning iterations the agent passes through the training data set. Iter is an integer greater than 0. The default is set to 1 in which each state transition tuple is presented to the agent only once. Depending on the size of the training data, a higher number of repeated learning iterations can improve convergence but requires longer computation time. This parameter is passed directly to `ReinforcementLearning()`.
+The learning parameters alpha, gamma, and epsilon must be provided in an optional control object passed to the `ReinforcementLearning()` function.
+
+* **control** A list of control parameters. The default is set to `list(alpha = 0.1, gamma = 0.9, epsilon = 0.1)`. This parameter is passed directly to `ReinforcementLearning()`.
+
+The following example utilizes the aforementioned dataset containing 406,541 game states of Tic-Tac-Toe to learn the optimal actions for each state of the board. All states are observed from the perspective of player $X$ who is also assumed to have played first. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game. Reward for player $X$ is $+1$ for ‘win’, $0$ for ‘draw’, and $-1$ for ‘loss’. 
+
+The current state of the board is represented by a rowwise concatenation of the players’ marks in a 3x3 grid. For example, “……X.B” denotes a board state in which player $X$ has placed a mark in the first field of the third column whereas player B has placed a mark in the third field of the third column.
+
+```{r}
+# Define reinforcement learning parameters
+control <- list(alpha = 0.2, gamma = 0.4, epsilon = 0.1)
+
+# Perform reinforcement learning
+model <- ReinforcementLearning(tictactoe, s = "State", a = "Action", r = "Reward", 
+                               s_new = "NextState", iter = 1, control = control)
+
+# Calculate optimal policy
+pol <- computePolicy(model)
+
+# Print policy
+head(pol)
+```
+
+
+**Exercise 2:** After running the previous code chunk, state what the function `computePolicy` does. Note that `c1` to `c9` denote the nine fields of the Tic-Tac-Toe board with `c1` corresponding to the first field of the first column and `c9` corresponding to the third field of the third column, where the indexing proceeds rowwise. The symbol `.` denotes an empty field.
+
+**Exercise 3:** Based on the output of the previous code chunk, state what the optimal action is for the agent to take when player $X$ places an initial mark on the center square of the board.
+
+**Exercise 4:** Based on the output of the previous code chunk, state what the optimal action is for the agent to take when player $X$ places an initial mark on the top left square of the board.
